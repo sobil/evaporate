@@ -10,31 +10,13 @@ rather than a build/deployment server.
 
 ## Installation
 
-### Docker
+## Install
 
-Pull the latest docker image from `seek/evaporate`.
-
-### Binary
-
-Download the latest binary from the
-[releases page](https://github.com/seek-oss/evaporate/releases).
-
-### From source
-
-1. Ensure [The Haskell Stack](https://docs.haskellstack.org/en/stable/README/)
-is installed
-
-2. Git clone https://github.com/seek-oss/evaporate to a temp location
-
-3. From within the evaporate repository, execute the following:
-
-  ```
-  > stack setup
-  > stack install
-  ```
-
-4. (Optional) If you've never used The Haskell Stack before you may need to
-include its default bin path into your `$PATH`.
+```
+git clone git@github.com:seek-oss/evaporate.git
+cd evaporate
+yarn add -g
+```
 
 ## Configuration
 

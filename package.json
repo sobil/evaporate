@@ -1,0 +1,35 @@
+{
+  "name": "node-evaporate",
+  "version": "2.0.0",
+  "description": "A simple, convention-based CloudFormation Stack deployment tool. The deployment region is read from the environment variable AWS_REGION or retrieved from the Instance Identity Document (for EC2 instances), otherwise it defaults to us-east-1.",
+  "repository": "git@github.com:seek-oss/evaporate.git",
+  "author": "Simon Pilepich <spilepich@seek.com.au>",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "bin": {
+    "evaporate": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "jest --no-cache",
+    "lint": "eslint src/**/*.ts",
+    "build": "tsc -b",
+    "build:watch": "yarn build && tsc -b -w",
+    "test:watch": "yarn test --watch --no-cache",
+    "setup": "tsc -p ./ && npm install -g"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.678.0",
+    "commander": "^5.0.0",
+    "jsonfile": "^6.0.1",
+    "yaml": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/jsonfile": "^5.0.0",
+    "@types/node": "^13.11.0",
+    "eslint": "^7.0.0",
+    "eslint-config-seek": "^6.0.2",
+    "tsconfig-seek": "^1.0.2",
+    "typescript": "^3.8.3"
+  }
+}

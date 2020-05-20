@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig-seek",
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "listEmittedFiles": false,
+    "target": "es5",
+    "lib": ["es6", "dom"]
+  }
+}

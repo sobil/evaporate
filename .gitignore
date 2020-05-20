@@ -1,2 +1,6 @@
-.stack-work/
-TAGS
+.vscode
+*.log
+node_modules
+npm-debug.log
+package-lock.json
+dist
