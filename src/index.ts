@@ -46,17 +46,17 @@ function evalRef(objRef: string) {
     if (i > 0) {
       bracketedObjectRef += `["${val}"]`;
     }
-    else { bracketedObjectRef += `$\{${val}` }
+    else { bracketedObjectRef += `${val}` }
     if (part.includes("[")) {
       bracketedObjectRef += `[${part.split("[")[1]}`
     }
   });
-  bracketedObjectRef += "}"
-
+  console.log(bracketedObjectRef)
   // eslint-disable-next-line
   return Function(
     'stack',
-    `\`"use strict";return (\`' + ${bracketedObjectRef} + '\`)\``
+    // eslint-disable-next-line
+  '"use strict";return (`${' + bracketedObjectRef +'}`)'
   );
 }
 
