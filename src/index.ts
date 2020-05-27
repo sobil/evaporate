@@ -113,7 +113,6 @@ const upsert = async (
       for await (const zone of evapCfg[stackName].r53zones) {
         try {
           const filePath = `${path}/${zone.zoneFile}`;
-          console.log({ filePath });
           await route53ZoneUpdate(
             evalRef(zone.zoneId)(stack),
             fs.realpathSync(filePath),

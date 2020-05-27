@@ -1,10 +1,7 @@
 {
-  "extends": "tsconfig-seek",
-  "include": ["src/**/*.ts"],
+  "extends": "@seek/seek-module-toolkit/config/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "listEmittedFiles": false,
-    "target": "es5",
-    "lib": ["es6", "dom"]
-  }
+    "outDir": "lib"
+  },
+  "include": ["src/**/*"]
 }
