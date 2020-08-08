@@ -1,0 +1,5 @@
+test-stack1:
+  template-path: "template.json"
+  parameters:
+    123412341234:
+      param1: value
