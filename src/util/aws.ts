@@ -21,7 +21,7 @@ interface Stack extends CloudFormation.Stack {
 const upsertTemplate = async (
   templatePath: PathLike,
   Parameters: CloudFormation.Parameters,
-  StackName: string
+  StackName: string,
 ): Promise<CloudFormation.Stack | void> => {
   const TemplateBody = readFileSync(templatePath, { encoding: 'utf8' });
   let stackDetails;
