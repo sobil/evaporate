@@ -13,14 +13,10 @@
   "typings": "lib/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "smt build",
-    "commit": "smt commit",
-    "configure": "smt configure",
-    "format": "smt format",
-    "format:check": "smt format check",
-    "lint": "smt lint",
-    "prerelease": "smt build",
-    "release": "smt release",
+    "build": "tsc build",
+    "build:watch": "tsc build --watch",
+    "format": "prettier --fix",
+    "format:check": "prettier",
     "test": "jest --no-cache",
     "test:watch": "yarn test --watch"
   },
@@ -31,9 +27,22 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
-    "@seek/seek-module-toolkit": "^3.0.16",
     "@types/jest": "^25.2.1",
     "@types/jsonfile": "^5.0.0",
-    "@types/node": "^13.11.0"
+    "@types/node": "^13.11.0",
+    "ts-jest": "^26.4.1"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
+  },
+  "jest": {
+    "verbose": true,
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
+
+
 }

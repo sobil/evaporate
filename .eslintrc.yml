@@ -1,1 +1,0 @@
-extends: './node_modules/@seek/seek-module-toolkit/config/.eslintrc.yml'
