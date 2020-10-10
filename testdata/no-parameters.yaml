@@ -1,4 +1,4 @@
 Stack1:
-  template-path: "template.json"
+  template-path: 'template.json'
   tags:
     tag1: test

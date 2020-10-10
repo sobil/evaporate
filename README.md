@@ -1,4 +1,5 @@
 ## Evaporate
+
 [![Build Status](https://travis-ci.org/seek-oss/evaporate.svg?branch=master)](https://travis-ci.org/seek-oss/evaporate)
 
 Evaporate is a simple CloudFormation Stack deployment tool.
@@ -50,7 +51,7 @@ definition. A stack definition consists of the following:
 1. (Optional) A list of Capabilities needed by the stack, e.g., CAPABILITY_IAM
 1. (Optional) A deployment region that is used to override the default, e.g. us-east-1
 
-*NB:* The order of execution is determined based on stack output references.
+_NB:_ The order of execution is determined based on stack output references.
 If there is a cyclic dependency within the stacks (e.g. stack2 references an
 output from stack1 and stack1 references an output from stack 2) then the given
 command will not be executed on any stacks. If there is no dependency cycle,
@@ -58,7 +59,7 @@ the command will be executed on the stacks in an order that ensures that any
 stack output references can be resolved when their corresponding stacks are
 created/upserted.
 
-*NB:* Only one `evaporate.yaml` file should be needed for each deployment.
+_NB:_ Only one `evaporate.yaml` file should be needed for each deployment.
 
 See [example/evaporate.yaml](/example/evaporate.yaml).
 
@@ -70,6 +71,7 @@ stacks.
 
 If multiple stack templates are being used, be sure to add an extra `-v` flag to
 the `docker run` command:
+
 ```
 -v $(pwd)/template-folder/another-template.json:/app/another-template.json
 ```
@@ -106,10 +108,11 @@ or just completely omitting the `tags` key altogether.
 
 #### S3 Bucket File Upload
 
-*NB:*
+_NB:_
+
 1. File uploads are done before stack creation.
 2. This section does not create a bucket itself, it is only used to upload files
-to buckets that have already been created within stacks that already exist.
+   to buckets that have already been created within stacks that already exist.
 
 Uploading files/folders to a bucket created in another stack is done by adding
 the `s3upload` key to a stack definition and specifying the name of each bucket
@@ -178,6 +181,7 @@ This is done by specifying either true or false to the `hash` key for each
 bucket within `s3upload`. For example, if you want to upload 3 files and a
 folder to the same bucket but only want to hash 2 of the files and the folder,
 it would look like this:
+
 ```
 s3upload:
 - bucket-name: bucket1
@@ -193,6 +197,7 @@ s3upload:
 ```
 
 The result of this upload would be the following structure within the bucket:
+
 ```
 /hashOfFile1/file1.txt
 /hashOfFile2/file2.txt
@@ -200,7 +205,7 @@ The result of this upload would be the following structure within the bucket:
 /file3.txt
 ```
 
-Files are *not* hashed by default so the `hash` key may be set to `false` or
+Files are _not_ hashed by default so the `hash` key may be set to `false` or
 omitted.
 
 File/folder hashes can also be used as parameter values:
@@ -224,6 +229,7 @@ uploaded to the bucket. The Lambda can now point to a zip file containing the
 source code files instead.
 
 For example:
+
 ```
 s3upload:
 - bucket-name: lambdaBucket
@@ -240,6 +246,7 @@ s3upload:
 
 would result in the following files being uploaded to the root folder of the
 `lambdaBucket` s3 bucket:
+
 ```
 sourceFile1.py.zip
   - sourceFile1.py
@@ -255,7 +262,7 @@ Both the `hash` and `zip` flag can be used together. This will yield the same
 result as having just the `zip` flag, except all file paths will be
 prefixed with the hash of their contents.
 
-*NB:* The `.zip` suffix will be added to the alternate file path so there is no
+_NB:_ The `.zip` suffix will be added to the alternate file path so there is no
 need to explicitly name the alternate path `path/to/file.zip` as this will
 result in a file called `file.zip.zip`.
 
@@ -274,6 +281,7 @@ This field is optional.
 
 Parameter values can refer to environment variables by using the following
 syntax:
+
 ```
 ParamKey: "${env.SOME_ENVIRONMENT_VARIABLE}"
 ```
@@ -282,32 +290,37 @@ Evaporate will fetch the value before creating/updating the stack, throwing an
 exception if it cannot be found.
 
 Similarly, stack output values can be used as parameter values as well:
+
 ```
 ParamKey: ${stack.stack-name-here.output.OutputName}
 ```
 
-*NB:* The stack whose output value is being used as a parameter value must be
-defined in `evaporate.yaml` *before* the stack that requires that value.
+_NB:_ The stack whose output value is being used as a parameter value must be
+defined in `evaporate.yaml` _before_ the stack that requires that value.
 Otherwise the stack will be unable to get the output since the other stack won't
 exist yet.
 
 At the moment it is not possible to reference an external value as a part of a
 larger parameter value, i.e.
+
 ```
 ParamKey: "Some stuff ${env.SOME_ENV} some other stuff"
 ```
+
 will not work.
 
 Similarly, multiple external values cannot be referenced within
 the same parameter value, i.e.
+
 ```
 ParamKey: "${env.SOME_ENV}${env.SOME_OTHER_ENV}"
 ```
+
 will not work.
 
 ## Usage
 
-*NB:* Your shell must be authenticated to AWS, e.g., `aws configure`
+_NB:_ Your shell must be authenticated to AWS, e.g., `aws configure`
 
 ### Upsert Stack (via binary)
 
@@ -332,14 +345,14 @@ Evaporate chooses the parameter values from `evaporate.yaml` based upon
 which account you have authenticated to, so you can never accidentally deploy
 Sandbox parameters to the Production account or vice versa.
 
-*NB*: Any files or folders you wish to upload to an S3 bucket must be added
+_NB_: Any files or folders you wish to upload to an S3 bucket must be added
 to the docker run command with an extra `-v` flag. You then reference the
 locations within your container in `evaporate.yaml`, **NOT** their locations
 on your local machine.
 
 ## Commands
 
-Evaporate will print detailed usage documentation via the ```--help``` flag.
+Evaporate will print detailed usage documentation via the `--help` flag.
 
 This works both natively:
 
@@ -348,10 +361,10 @@ This works both natively:
 ```
 
 and via Docker:
+
 ```
 > docker run seek/evaporate --help
 ```
-
 
 ## Troubleshooting
 

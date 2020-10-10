@@ -7,10 +7,7 @@
       "Properties": {
         "Handler": "index.handler",
         "Role": {
-          "Fn::GetAtt": [
-            "LambdaExecutionRole",
-            "Arn"
-          ]
+          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
         },
         "Code": {
           "ZipFile": {
@@ -19,7 +16,9 @@
               [
                 "exports.handler = function(event, context, callback) {",
                 "   console.log(event);",
-                "   console.log(", { "Ref": "LogMessage" }, ");",
+                "   console.log(",
+                { "Ref": "LogMessage" },
+                ");",
                 "   callback(null, 'Sample function called');",
                 "};"
               ]
@@ -38,13 +37,9 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": [
-                  "lambda.amazonaws.com"
-                ]
+                "Service": ["lambda.amazonaws.com"]
               },
-              "Action": [
-                "sts:AssumeRole"
-              ]
+              "Action": ["sts:AssumeRole"]
             }
           ]
         },
@@ -57,9 +52,7 @@
               "Statement": [
                 {
                   "Effect": "Allow",
-                  "Action": [
-                    "logs:*"
-                  ],
+                  "Action": ["logs:*"],
                   "Resource": "arn:aws:logs:*:*:*"
                 }
               ]
@@ -88,11 +81,11 @@
   "Outputs": {
     "OutputArn": {
       "Description": "The arn of the lambda function",
-      "Value": { "Fn::GetAtt" : [ "SampleFunction", "Arn" ]}
+      "Value": { "Fn::GetAtt": ["SampleFunction", "Arn"] }
     },
     "OutputID": {
       "Description": "The LamdaFunction ID",
-      "Value": { "Ref" : "SampleFunction" }
+      "Value": { "Ref": "SampleFunction" }
     }
   }
 }

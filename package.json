@@ -13,10 +13,10 @@
   "typings": "lib/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "tsc build",
-    "build:watch": "tsc build --watch",
-    "format": "prettier --fix",
-    "format:check": "prettier",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "jest --no-cache",
     "test:watch": "yarn test --watch"
   },
@@ -27,10 +27,13 @@
     "yaml": "^1.10.0"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^26.0.14",
     "@types/jsonfile": "^5.0.0",
     "@types/node": "^13.11.0",
-    "ts-jest": "^26.4.1"
+    "jest": "^26.5.2",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
   },
   "prettier": {
     "trailingComma": "all",
@@ -43,6 +46,4 @@
     "preset": "ts-jest",
     "testEnvironment": "node"
   }
-
-
 }
