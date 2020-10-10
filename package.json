@@ -6,10 +6,9 @@
     "type": "git",
     "url": "git@github.com:seek-oss/evaporate.git"
   },
-  "author": "Simon Pilepich <spilepich@seek.com.au>",
+  "author": "Simon Pilepich <simon.pilepich@gmail.com>",
   "license": "MIT",
-  "main": "lib/commonjs",
-  "module": "lib/module",
+  "main": "lib/index",
   "typings": "lib/index.d.ts",
   "sideEffects": false,
   "scripts": {
