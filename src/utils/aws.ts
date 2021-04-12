@@ -84,8 +84,11 @@ const upsertTemplate = async (
   return
 }
 
-const route53ZoneUpdate = (zoneID: string, zoneFilePath: PathLike) =>
-  new Promise<number>((resolve, rejects) => {
+const route53ZoneUpdate = (
+  zoneID: string,
+  zoneFilePath: PathLike,
+): Promise<void> =>
+  new Promise<void>((resolve, rejects) => {
     const cli53 = spawn(`cli53`, [
       'import',
       '--file',
@@ -100,7 +103,7 @@ const route53ZoneUpdate = (zoneID: string, zoneFilePath: PathLike) =>
       console.error(`stderr: ${data}`)
     })
     cli53.on('close', (code: number) =>
-      code === 0 ? resolve(code) : rejects(code),
+      code === 0 ? resolve(null) : rejects(`cli53 exited with code: ${code}`),
     )
   })
 

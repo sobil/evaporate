@@ -1,5 +1,7 @@
 // This function evaluates references in the evaporate stack mid flight and is probably not the safest..... but it's better than nothing
-export const evaluateReference: Function = (objReference: string) => {
+export const evaluateReference = (
+  objReference: string,
+): ((stack: Record<string, unknown>) => string) => {
   let bracketedObjectRef = ''
   objReference
     //we dont need the ${} yet.
@@ -30,5 +32,5 @@ export const evaluateReference: Function = (objReference: string) => {
     '"use strict";const restrictedToThisObject = {stack}; return (`' +
       bracketedObjectRef +
       '`)',
-  )
+  ) as (stack: Record<string, unknown>) => string
 }

@@ -1,5 +1,6 @@
 import * as jsonfile from 'jsonfile'
 import * as file from 'fs'
+import type { PackageJson } from 'types-package-json'
 
 const findPackageJson = (): string | null => {
   let path = file.realpathSync(__dirname)
@@ -13,10 +14,10 @@ const findPackageJson = (): string | null => {
   return null
 }
 
-const getPackageJson = (): Record<string, any> => {
+const getPackageJson = (): PackageJson => {
   const packageJsonPath = findPackageJson()
   if (packageJsonPath) {
-    return jsonfile.readFileSync(packageJsonPath) as Record<string, any>
+    return jsonfile.readFileSync(packageJsonPath) as PackageJson
   }
   throw Error('package.json Not Found')
 }

@@ -2,13 +2,12 @@
 
 import { program } from 'commander'
 import getPackageJson from './utils/package-json'
-import { CloudFormation } from 'aws-sdk'
 import { upsert } from './commands/upsert'
 
 const packageJson = getPackageJson()
 
 program
-  .version(packageJson.version || '0.0.1')
+  .version(packageJson.version || '0.0.0-development')
   .description(packageJson.description || 'Evaporate')
   .arguments('COMMAND')
   .option('-V, --verbose')
