@@ -1,6 +1,6 @@
 {
   "name": "node-evaporate",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A simple, convention-based CloudFormation Stack deployment tool. The deployment region is read from the environment variable AWS_REGION or retrieved from the Instance Identity Document (for EC2 instances), otherwise it defaults to us-east-1.",
   "repository": {
     "type": "git",
@@ -11,6 +11,12 @@
   "main": "lib/index",
   "typings": "lib/index.d.ts",
   "sideEffects": false,
+  "files": [
+    "lib"
+  ],
+  "bin": {
+    "node-evaporate": "./lib/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
