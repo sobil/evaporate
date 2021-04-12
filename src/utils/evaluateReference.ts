@@ -25,5 +25,10 @@ export const evaluateReference: Function = (objReference: string) => {
     })
   bracketedObjectRef += '}'
   // eslint-disable-next-line
-  return Function('stack', '"use strict";const restrictedToThisObject = {stack}; return (`' + bracketedObjectRef + '`)')
+  return Function(
+    'stack',
+    '"use strict";const restrictedToThisObject = {stack}; return (`' +
+      bracketedObjectRef +
+      '`)',
+  )
 }
