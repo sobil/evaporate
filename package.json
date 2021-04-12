@@ -19,7 +19,8 @@
     "test": "jest --no-cache",
     "test:watch": "yarn test --watch",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
-    "lint:check": "eslint '*/**/*.{js,ts,tsx}'"
+    "lint:check": "eslint '*/**/*.{js,ts,tsx}'",
+    "clean": "rm -rf ./lib"
   },
   "dependencies": {
     "aws-sdk": "^2.678.0",
@@ -50,6 +51,9 @@
   "jest": {
     "verbose": true,
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ]
   }
 }

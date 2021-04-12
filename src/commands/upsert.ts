@@ -7,6 +7,7 @@ import {
 import * as fs from 'fs'
 import * as YAML from 'yaml'
 import { CloudFormation } from 'aws-sdk'
+import { evaluateReference } from '../utils/evaluateReference'
 
 interface KeyValueOutputs {
   [id: string]: string | void
@@ -30,7 +31,7 @@ export const upsert = async (
       ? `${path}/${fileName}`
       : `${path}/${DEFAULTS.evaporateFile}`
   if (!fs.existsSync(evaporateFile)) {
-    throw new Error(`File not Found:${path}/${fileName}`)
+    throw new Error(`File not Found:${path}${fileName}`)
   }
   const evaporateFileContent = fs.readFileSync(evaporateFile, {
     encoding: 'utf8',
@@ -61,7 +62,7 @@ export const upsert = async (
         try {
           const filePath = `${path}/${zone.zoneFile}`
           await route53ZoneUpdate(
-            evalRef(zone.zoneId)(stack),
+            evaluateReference(zone.zoneId)(stack),
             fs.realpathSync(filePath),
           )
         } catch (e) {
